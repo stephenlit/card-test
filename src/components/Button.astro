@@ -1,7 +1,28 @@
 ---
-const { backGround } = Astro.props;
+const { tier, most_popular } = Astro.props;
+
+let btnBorder = '';
+console.log(most_popular);
+
+if (tier === 'Free') {
+    btnBorder = 'border-gray-500';
+} else if (tier === 'Pro') {
+    if (most_popular === true) {
+        btnBorder = 'bg-blue-500 text-white';
+    } else {
+        btnBorder = 'border-blue-500 text-black';
+    }
+} else {
+    if (most_popular === true) {
+        btnBorder = 'bg-yellow-500 text-white';
+    } else {
+        btnBorder = 'border-yellow-500 text-yellow-500';
+    }
+}
 ---
 
-<button class=`border-2 px-3 py-1 my-4 border-${backGround}`>
+<button
+    class=`border-2 px-3 py-1 my-4 uppercase font-semibold text-sm ${btnBorder}`
+>
     <slot />
 </button>
