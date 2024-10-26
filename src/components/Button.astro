@@ -1,0 +1,7 @@
+---
+const { backGround } = Astro.props;
+---
+
+<button class=`border-2 px-3 py-1 my-4 border-${backGround}`>
+    <slot />
+</button>

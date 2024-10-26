@@ -1,0 +1,46 @@
+---
+import Card from '../components/Card.astro';
+import data from '../data/cardData.json';
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <title>Astro</title>
+    </head>
+    <body>
+        <!-- Place pricing section here -->
+        <div
+            class="container mx-auto flex h-lvh items-center justify-center border"
+        >
+            {
+                data.map((card) => (
+                    <Card
+                        most_popular={card.most_popular}
+                        tier={card.tier}
+                        title={card.title}
+                        description={card.description}
+                        price={card.amount_per_month}
+                        btn_text={card.btn_text}
+                        items={card.features}
+                    />
+                ))
+            }
+        </div>
+    </body>
+</html>
+
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+</style>

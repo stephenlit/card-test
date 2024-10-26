@@ -1,0 +1,56 @@
+---
+import Button from './Button.astro';
+
+const { tier, title, description, price, most_popular, btn_text, items } =
+    Astro.props;
+
+let backGround = '';
+
+if (tier === 'Free') {
+    backGround = 'bg-white';
+} else if (tier === 'Pro') {
+    backGround = 'bg-blue-500';
+} else {
+    backGround = 'bg-yellow-300';
+}
+---
+
+<article
+    class="m-2 flex w-64 flex-col items-center overflow-hidden rounded-lg border"
+>
+    <header class=`w-[100%] ${backGround} text-center`>
+        <h3 class="py-2 text-sm">{tier}</h3>
+    </header>
+    {
+        most_popular ? (
+            <p class="my-4 bg-black px-3 py-1 text-xs text-white">
+                Most Popular
+            </p>
+        ) : (
+            <p class="my-7" />
+        )
+    }
+    <div class="flex items-end py-4">
+        <span class="text-3xl font-bold">${price}</span>
+        <p>/mo</p>
+    </div>
+    <div class="mb-8 flex flex-col items-center px-4">
+        <p class="text-lg font-semibold">{title}</p>
+        <p class="text-sm">{description}</p>
+
+        <Button backGround={backGround}>{btn_text}</Button>
+        <!-- <button class="my-4 w-[100%] rounded-lg border bg-slate-400 py-1"
+            >{btn_text}</button
+        > -->
+        <ul class="space-y-2 text-xs">
+            {
+                items.map((item) => (
+                    <li>
+                        {item.checked ? '✅' : '❌'}
+                        {item.title}
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</article>
