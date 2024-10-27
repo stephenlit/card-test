@@ -19,7 +19,9 @@ import data from '../data/cardData.json';
     </head>
     <body>
         <!-- Place pricing section here -->
-        <div class="container mx-auto flex h-lvh items-center justify-center">
+        <div
+            class="container mx-auto flex h-full flex-col items-center justify-center md:flex-row"
+        >
             {
                 data.map((card) => (
                     <Card
