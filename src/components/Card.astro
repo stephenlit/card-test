@@ -1,10 +1,12 @@
 ---
 import Button from './Button.astro';
+import NewButton from './NewButton.astro';
 
 const { tier, title, description, price, most_popular, btn_text, items } =
     Astro.props;
 
 let backGround = '';
+let btnBorder = '';
 
 if (tier === 'Free') {
     backGround = 'bg-white-500';
@@ -12,6 +14,22 @@ if (tier === 'Free') {
     backGround = 'bg-blue-800 text-white';
 } else {
     backGround = 'bg-yellow-500 text-white';
+}
+
+if (tier === 'Free') {
+    btnBorder = 'border-gray-500';
+} else if (tier === 'Pro') {
+    if (most_popular === true) {
+        btnBorder = 'bg-blue-500 text-white';
+    } else {
+        btnBorder = 'border-blue-500 text-black';
+    }
+} else {
+    if (most_popular === true) {
+        btnBorder = 'bg-yellow-500 text-white';
+    } else {
+        btnBorder = 'border-yellow-500 text-yellow-500';
+    }
 }
 ---
 
@@ -22,12 +40,10 @@ if (tier === 'Free') {
         <h3 class="py-2 text-sm">{tier}</h3>
     </header>
     {
-        most_popular ? (
+        most_popular && (
             <p class="my-4 bg-black px-3 py-1 text-xs text-white">
                 Most Popular
             </p>
-        ) : (
-            <p class="my-7" />
         )
     }
     <div class="flex items-end py-4">
@@ -37,7 +53,10 @@ if (tier === 'Free') {
     <div class="mb-8 flex flex-col items-center px-4">
         <p class="text-lg font-semibold">{title}</p>
         <p class="text-sm">{description}</p>
-
+        <NewButton
+            classes="border-2 px-3 py-1 my-4 uppercase font-semibold text-sm"
+            theame={btnBorder}>{btn_text}</NewButton
+        >
         <Button tier={tier} most_popular={most_popular}>{btn_text}</Button>
         <!-- <button class="my-4 w-[100%] rounded-lg border bg-slate-400 py-1"
             >{btn_text}</button

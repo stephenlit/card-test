@@ -1,0 +1,10 @@
+---
+const { classes, isFilled, theame, ...rest } = Astro.props;
+---
+
+<button
+    class:list={['border', { filled: isFilled }, classes, theame]}
+    {...rest}
+>
+    <slot />
+</button>
