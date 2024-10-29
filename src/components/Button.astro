@@ -4,21 +4,32 @@ const { tier, most_popular } = Astro.props;
 let btnBorder = '';
 console.log(most_popular);
 
-if (tier === 'Free') {
-    btnBorder = 'border-gray-500';
-} else if (tier === 'Pro') {
-    if (most_popular === true) {
-        btnBorder = 'bg-blue-500 text-white';
-    } else {
-        btnBorder = 'border-blue-500 text-black';
-    }
-} else {
-    if (most_popular === true) {
-        btnBorder = 'bg-yellow-500 text-white';
-    } else {
-        btnBorder = 'border-yellow-500 text-yellow-500';
-    }
-}
+const btnBorder =
+    tier === 'Free'
+        ? 'border-gray-500'
+        : tier === 'Pro'
+          ? most_popular
+              ? 'bg-blue-500 text-white'
+              : 'border-blue-500 text-black'
+          : most_popular
+            ? 'bg-yellow-500 text-white'
+            : 'border-yellow-500 text-yellow-500';
+
+// if (tier === 'Free') {
+//     btnBorder = 'border-gray-500';
+// } else if (tier === 'Pro') {
+//     if (most_popular === true) {
+//         btnBorder = 'bg-blue-500 text-white';
+//     } else {
+//         btnBorder = 'border-blue-500 text-black';
+//     }
+// } else {
+//     if (most_popular === true) {
+//         btnBorder = 'bg-yellow-500 text-white';
+//     } else {
+//         btnBorder = 'border-yellow-500 text-yellow-500';
+//     }
+// }
 ---
 
 <button

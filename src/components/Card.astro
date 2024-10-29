@@ -8,10 +8,14 @@ const { tier, title, description, price, most_popular, btn_text, items } =
 let backGround = '';
 let btnBorder = '';
 
+//if teir is free make the background white
 if (tier === 'Free') {
     backGround = 'bg-white-500';
+
+    //if tier is pro make the background blue with white text
 } else if (tier === 'Pro') {
     backGround = 'bg-blue-800 text-white';
+    // else make the background yellow with white text
 } else {
     backGround = 'bg-yellow-500 text-white';
 }
@@ -34,7 +38,7 @@ if (tier === 'Free') {
 ---
 
 <article
-    class="m-2 flex w-64 flex-col items-center justify-between overflow-hidden rounded-lg border"
+    class="m-2 flex h-fit min-h-[25rem] w-64 flex-col items-center justify-between rounded-lg border"
 >
     <header class=`w-[100%] uppercase ${backGround} text-center`>
         <h3 class="py-2 text-sm">{tier}</h3>
