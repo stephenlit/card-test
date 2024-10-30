@@ -1,7 +1,14 @@
 ---
+//types
+import { type HTMLAttributes } from 'astro/types';
+import type { Card } from '../pages/index.astro';
 const { tier, most_popular } = Astro.props;
 
-console.log(most_popular);
+interface Props extends HTMLAttributes<'button'> {
+    classes?: string;
+    most_popular: boolean;
+    tier: Card['tier'];
+}
 
 const btnBorder =
     tier === 'Free'

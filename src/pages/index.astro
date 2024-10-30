@@ -1,6 +1,19 @@
 ---
 import Card from '../components/Card.astro';
 import data from '../data/cardData.json';
+
+export type Card = {
+    tier: string;
+    most_popular: boolean;
+    amount_per_month: number;
+    title: string;
+    description: string;
+    btn_text: string;
+    features: {
+        title: string;
+        checked: boolean;
+    }[];
+};
 ---
 
 <html lang="en">
@@ -23,19 +36,7 @@ import data from '../data/cardData.json';
             <div
                 class="flex flex-col flex-wrap items-center justify-center gap-2 md:flex-row"
             >
-                {
-                    data.map((card) => (
-                        <Card
-                            most_popular={card.most_popular}
-                            tier={card.tier}
-                            title={card.title}
-                            description={card.description}
-                            price={card.amount_per_month}
-                            btn_text={card.btn_text}
-                            items={card.features}
-                        />
-                    ))
-                }
+                {data.map((card: Card) => <Card data={card} />)}
             </div>
         </main>
     </body>

@@ -1,10 +1,27 @@
 ---
+//import types
+import { type HTMLAttributes } from 'astro/types';
+import type { Card } from '../pages/index.astro';
+
 //imports from components
 import NewButton from './NewButton.astro';
 
+interface Props extends HTMLAttributes<'article'> {
+    data: Card;
+}
+
+const { data } = Astro.props;
+
 //destructor values out of Astro.props
-const { tier, title, description, price, most_popular, btn_text, items } =
-    Astro.props;
+const {
+    tier,
+    title,
+    description,
+    amount_per_month,
+    most_popular,
+    btn_text,
+    features,
+} = data;
 
 let backGround = '';
 let btnBorder = '';
@@ -52,7 +69,7 @@ if (tier === 'Free') {
         )
     }
     <div class="flex items-end py-4">
-        <span class="text-3xl font-bold">${price}</span>
+        <span class="text-3xl font-bold">${amount_per_month}</span>
         {tier !== 'Free' && <p>/mo</p>}
     </div>
     <div class="mb-8 flex flex-col items-center px-4">
@@ -68,7 +85,7 @@ if (tier === 'Free') {
         > -->
         <ul class="space-y-2 text-xs">
             {
-                items.map((item) => (
+                features.map((item) => (
                     <li>
                         {item.checked ? '✅' : '❌'}
                         {item.title}
